@@ -30,5 +30,11 @@ def change_text (filename, text_old, text_new):
     text = text.replace(text_old, text_new)
     open(filename, "w").write(text)
 
-print "Pre-activate the firewall"
+os.system ('echo ==============================')
+os.system ('echo BEGIN ADDING SECURITY FEATURES')
+
+os.system ('echo Pre-activate the firewall')
 change_text ('/etc/ufw/ufw.conf', 'ENABLED=no', 'ENABLED=yes')
+
+os.system ('echo FINISHED ADDING SECURITY FEATURES')
+os.system ('echo =================================')
