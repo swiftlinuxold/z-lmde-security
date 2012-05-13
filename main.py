@@ -24,6 +24,10 @@ else:
 # Everything up to this point is common to all Python scripts called by shared-*.sh
 # =================================================================================
 
+def add_pkg (packages):
+    os.system ('echo INSTALLING ' + packages)
+    os.system ('apt-get install -qq ' + packages)
+
 def change_text (filename, text_old, text_new):
     # Replaces text within a file
     text=open(filename, 'r').read()
@@ -33,8 +37,12 @@ def change_text (filename, text_old, text_new):
 os.system ('echo ==============================')
 os.system ('echo BEGIN ADDING SECURITY FEATURES')
 
+add_pkg ('gufw')
+
 os.system ('echo Pre-activate the firewall')
 change_text ('/etc/ufw/ufw.conf', 'ENABLED=no', 'ENABLED=yes')
+
+add_pkg ('keepass2')
 
 os.system ('echo FINISHED ADDING SECURITY FEATURES')
 os.system ('echo =================================')
